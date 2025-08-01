@@ -1,0 +1,7 @@
+2025-07-31 21:39:33 - ETL Job Started
+2025-07-31 21:39:33 - Extract phase Started
+2025-07-31 21:39:33 - Data extraction complete.
+2025-07-31 21:39:33 - Transform phase Started
+2025-07-31 21:39:33 - Data transformation complete.
+2025-07-31 21:39:33 - Data loading to CSV complete.
+2025-07-31 21:39:33 - Data loaded to Database as table.

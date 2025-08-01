@@ -1,9 +1,7 @@
-import datetime
+from datetime import datetime
 
-
-def log_progress(message, log_file='etl_log.txt'): 
-    timestamp_format = '%Y-%m-%d %H:%M:%S' # Year-Month-Day Hour-Minute-Second 
-    now = datetime.now() # get current timestamp 
-    timestamp = now.strftime(timestamp_format) 
-    with open(log_file,"a") as f: 
-        f.write(timestamp + ',' + message + '\n') 
+def log_progress(message):
+    now = datetime.now()  # Obtener la fecha y hora actual
+    timestamp = now.strftime("%Y-%m-%d %H:%M:%S")  # Formatear como texto
+    with open("log_file.txt", "a") as f:
+        f.write(f"{timestamp} - {message}\n")
