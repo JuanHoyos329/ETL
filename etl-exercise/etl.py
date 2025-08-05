@@ -6,43 +6,34 @@ from datetime import datetime
 import warnings
 warnings.filterwarnings('ignore')  # Suppress all warnings
 
-def extract(): 
 
-    # Load csv files
-    def extract_from_csv(file_to_process):
+def extract_from_csv(file_to_process):
         dataframe = pd.read_csv(file_to_process)
+        dataframe = dataframe.fillna("N/A")
         return dataframe
 
-    # Load json files
-    def extract_from_json(file_to_process):
+    # Load JSON files
+def extract_from_json(file_to_process):
         dataframe = pd.read_json(file_to_process, lines=True)
+        dataframe = dataframe.fillna("N/A")
         return dataframe
 
-
-    # Load xml files
-    def extract_from_xml(file_to_process):
+    # Load XML files
+def extract_from_xml(file_to_process):
         tree = ET.parse(file_to_process)
         root = tree.getroot()
 
         data = []
-        
         for car in root:
             car_data = {}
             for element in car:
                 car_data[element.tag] = element.text
             data.append(car_data)
 
-        # Convert list of dicts to DataFrame with specified columns
         extracted_data = pd.DataFrame(data, columns=['car_model','year_of_manufacture','price','fuel'])
-
-        # Check for null values and fill with "N/A" if any
-        if extracted_data.isnull().values.any():
-            extracted_data = extracted_data.fillna("N/A")
-
+        extracted_data = extracted_data.fillna("N/A")
         return extracted_data
 
-    # Puedes retornar las funciones si deseas usarlas fuera
-    return extract_from_csv, extract_from_json, extract_from_xml
 
 def transform(data):
     # Convertimos price a numérico (por si acaso) y redondeamos a 2 decimales
