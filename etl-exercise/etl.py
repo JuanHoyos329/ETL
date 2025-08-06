@@ -6,21 +6,18 @@ from datetime import datetime
 import warnings
 warnings.filterwarnings('ignore')  # Suppress all warnings
 
-def extract(): 
-
-    # Load csv files
-    def extract_from_csv(file_to_process):
+def extract_from_csv(file_to_process):
         dataframe = pd.read_csv(file_to_process)
         return dataframe
 
     # Load json files
-    def extract_from_json(file_to_process):
+def extract_from_json(file_to_process):
         dataframe = pd.read_json(file_to_process, lines=True)
         return dataframe
 
 
     # Load xml files
-    def extract_from_xml(file_to_process):
+def extract_from_xml(file_to_process):
         tree = ET.parse(file_to_process)
         root = tree.getroot()
 
@@ -41,8 +38,6 @@ def extract():
 
         return extracted_data
 
-    # Puedes retornar las funciones si deseas usarlas fuera
-    return extract_from_csv, extract_from_json, extract_from_xml
 
 def transform(data):
     # Convertimos price a numérico (por si acaso) y redondeamos a 2 decimales
